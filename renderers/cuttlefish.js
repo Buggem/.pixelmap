@@ -31,11 +31,11 @@ function unofficialFound() {
 	}
 	console.warn("WARNING: Unofficial renderer found using same variable name as official.\nIf you are the developer of this renderer please use a different variable name.\nThis render will now be sent to localstorage as render #" + renderID);
 	window.localStorage.setItem(renderID, JSON.stringify(window.pixelmap));
-	window.pixelmap = pmp5;
+	window.pixelmap.p5 = pmp5;
 }
 if (typeof window.pixelmap === 'undefined') {
 	// This case create a new one
-	window.pixelmap = pmp5;
+	window.pixelmap.p5 = pmp5;
 } else if(window.pixelmap.name !== pxname) {
 	// This case warn the user
 	unofficialFound();
