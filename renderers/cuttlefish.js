@@ -27,6 +27,7 @@ var pmp5 = {
 		  xhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) {
 		      var pm = JSON.parse(this.responseText);
+		      return pm;
 		    }
 		  };
 		  xhttp.open("GET", url, true);
