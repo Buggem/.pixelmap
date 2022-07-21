@@ -21,6 +21,16 @@ var pmp5 = {
 			console.log(sketch);
 			sketch.fill(pixel.r, pixel.g, pixel.b, pixel.a);
 			sketch.rect(pos.x + (pixel.x*pixelsize), pos.y + (pixel.y*pixelsize), pixelsize, pixelsize);
+	},
+	"loadPixelmap": function(url) {
+		  var xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      var pm = JSON.parse(this.responseText);
+		    }
+		  };
+		  xhttp.open("GET", url, true);
+		  xhttp.send();
 	}
 };
 function unofficialFound() {
