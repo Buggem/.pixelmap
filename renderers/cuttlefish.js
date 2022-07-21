@@ -27,12 +27,21 @@ var pmp5 = {
 		  xhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) {
 		      var pm = JSON.parse(this.responseText);
-		      return pm;
+		      window.savePixelmap(pm);
 		    }
 		  };
 		  xhttp.open("GET", url, true);
 		  xhttp.send();
 	}
+};
+window.savePixelmap = function(pm) {
+	var pmID = Math.floor(Math.random() * 1000).toString();
+	if(window.localStorage.hasOwnProperty(pmID)) {
+		this();
+		return;
+	}
+	console.log("Saving as Pixelmap #" + pmID);
+	window.localStorage.setItem(pmID, JSON.stringify(pm));
 };
 function unofficialFound() {
 	var renderID = Math.floor(Math.random() * 1000).toString();
