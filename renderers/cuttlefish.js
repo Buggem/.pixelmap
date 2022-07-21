@@ -21,7 +21,27 @@ var pmp5 = {
 			console.log(sketch);
 			sketch.fill(pixel.r, pixel.g, pixel.b, pixel.a);
 			sketch.rect(pos.x + (pixel.x*pixelsize), pos.y + (pixel.y*pixelsize), pixelsize, pixelsize);
+	},
+	"loadPixelmap": function(url) {
+		  var xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      var pm = JSON.parse(this.responseText);
+		      window.savePixelmap(pm);
+		    }
+		  };
+		  xhttp.open("GET", url, true);
+		  xhttp.send();
 	}
+};
+window.savePixelmap = function(pm) {
+	var pmID = Math.floor(Math.random() * 1000).toString();
+	if(window.localStorage.hasOwnProperty(pmID)) {
+		this();
+		return;
+	}
+	console.log("Saving as Pixelmap #" + pmID);
+	window.localStorage.setItem(pmID, JSON.stringify(pm));
 };
 function unofficialFound() {
 	var renderID = Math.floor(Math.random() * 1000).toString();
