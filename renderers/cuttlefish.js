@@ -22,11 +22,12 @@ var pmp5 = {
 			sketch.fill(pixel.r, pixel.g, pixel.b, pixel.a);
 			sketch.rect(pos.x + (pixel.x*pixelsize), pos.y + (pixel.y*pixelsize), pixelsize, pixelsize);
 	},
-	"loadPixelmap": function(url) {
+	"loadPixelmap": function(url, _callback) {
 		  var xhttp = new XMLHttpRequest();
 		  xhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) {
 		      var pm = JSON.parse(this.responseText);
+		      _callback(pm);
 		      window.savePixelmap(pm);
 		    }
 		  };
