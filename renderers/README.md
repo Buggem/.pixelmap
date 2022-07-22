@@ -55,3 +55,5 @@ var myp5 = new p5(s);
 ### Step #4 run code.
 
 Here is a good example of that in [the main example](https://openprocessing.org/sketch/1616444).
+
+### Also see cuttlefish.md for more info.
