@@ -4,9 +4,10 @@ var version = 0.1;
 console.log("Pixelmapper for P5.js (codename Cuttlefish) v" + version.toString() + " renderer OFFICIAL\n\u00A9 The Pixelmap Authors " + currentDate.getFullYear()); // Making my life easier so I never have to update the year.
 var pxname = "Official Pixelmapper for P5.js (codename Cuttlefish) v" + version.toString() + " by The Pixelmap Authors";
 var pmp5 = {
+	"logs": false,
 	"render": function(pm, pos, sketch) {
 		var renderPixel = function(pixel, pixelsize, pos, sketch) {
-			console.log("Rendered pixel at x: " + pos.x + (pixel.x*pixelsize) + ", y: " + pos.y + (pixel.y*pixelsize));
+			if(window.pixelmap.p5.logs) console.log("Rendered pixel at x: " + pos.x + (pixel.x*pixelsize) + ", y: " + pos.y + (pixel.y*pixelsize));
 			//console.log(sketch);
 			sketch.noStroke();
 			sketch.fill(pixel.r, pixel.g, pixel.b, pixel.a);
@@ -15,10 +16,10 @@ var pmp5 = {
 		for(let pixel of pm.pixels) {
 			renderPixel(pixel, pm.pixelsize, pos, sketch);
 		}
-		console.log("Finished render of \"" + ((typeof pm.name === 'undefined') ? ("Unnamed Pixelmap") : (pm.name)) + "\" at x: " + pos.x + ", y: " + pos.y);
+		if(window.pixelmap.p5.logs) console.log("Finished render of \"" + ((typeof pm.name === 'undefined') ? ("Unnamed Pixelmap") : (pm.name)) + "\" at x: " + pos.x + ", y: " + pos.y);
 	},
 	"renderPixel": function(pixel, pixelsize, pos, sketch) {
-			console.log("Rendered pixel at x: " + pos.x + (pixel.x*pixelsize) + ", y: " + pos.y + (pixel.y*pixelsize));
+			if(window.pixelmap.p5.logs) console.log("Rendered pixel at x: " + pos.x + (pixel.x*pixelsize) + ", y: " + pos.y + (pixel.y*pixelsize));
 			//console.log(sketch);
 			sketch.noStroke();
 			sketch.fill(pixel.r, pixel.g, pixel.b, pixel.a);
@@ -35,6 +36,22 @@ var pmp5 = {
 		  };
 		  xhttp.open("GET", url, true);
 		  xhttp.send();
+	},
+	"genPixelmap": function(_name ,_pxsize, image, _callback) {
+		var pm = { 
+			"name": _name,
+			"pixelsize": _pxsize,
+			"pixels": []
+		};
+		for(let x = 0; x < image.width; x++) {
+			for(let y = 0; y < image.height; y++) {
+				var c = image.get(x, y);
+				if(window.pixelmap.p5.logs) console.log("Transferred pixel at x: " + x + ", y: " + y);
+				
+				pm.pixels.push({ "r": red(c), "g": green(c), "b": blue(c), "a": alpha(c), "x": x, "y": y });
+		  }
+		}
+		_callback(pm);
 	}
 };
 window.savePixelmap = function(pm) {
@@ -43,7 +60,7 @@ window.savePixelmap = function(pm) {
 		this();
 		return;
 	}
-	console.log("Saving as Pixelmap #" + pmID);
+	if(window.pixelmap.p5.logs) console.log("Saving as Pixelmap #" + pmID);
 	window.localStorage.setItem(pmID, JSON.stringify(pm));
 };
 function unofficialFound() {
