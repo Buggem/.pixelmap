@@ -7,7 +7,7 @@ var pmp5 = {
 	"render": function(pm, pos, sketch) {
 		var renderPixel = function(pixel, pixelsize, pos, sketch) {
 			console.log("Rendered pixel at x: " + pos.x + (pixel.x*pixelsize) + ", y: " + pos.y + (pixel.y*pixelsize));
-			console.log(sketch);
+			//console.log(sketch);
 			sketch.fill(pixel.r, pixel.g, pixel.b, pixel.a);
 			sketch.rect(pos.x + (pixel.x*pixelsize), pos.y + (pixel.y*pixelsize), pixelsize, pixelsize);
 		};
@@ -18,7 +18,7 @@ var pmp5 = {
 	},
 	"renderPixel": function(pixel, pixelsize, pos, sketch) {
 			console.log("Rendered pixel at x: " + pos.x + (pixel.x*pixelsize) + ", y: " + pos.y + (pixel.y*pixelsize));
-			console.log(sketch);
+			//console.log(sketch);
 			sketch.fill(pixel.r, pixel.g, pixel.b, pixel.a);
 			sketch.rect(pos.x + (pixel.x*pixelsize), pos.y + (pixel.y*pixelsize), pixelsize, pixelsize);
 	},
