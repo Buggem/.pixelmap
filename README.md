@@ -27,7 +27,7 @@ I can't think why I even called it that.
 
 Oh well, I just we'll just have to live with it.
 
-@dec01111 - the only person to commit so far
+[@dev01111](https://github.com/dev01111) - the only person to commit so far
 
 ## Disclaimer
 This has absoulutly no invovlvement with the crypto project `Pixelmap`. If you want that [search for it](https://github.com/search?q=pixelmap), don't come here.
