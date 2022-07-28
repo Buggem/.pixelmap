@@ -6,15 +6,8 @@ var pxname = "Official Pixelmapper (aka NIPPER) for P5.js (codename Cuttlefish) 
 var pmp5 = {
 	"logs": false, // Do logs? boolean
 	"render": function(pm, pos, sketch) { // Main render function
-		var renderPixel = function(pixel, pixelsize, pos, sketch) { // Alias of pmp5.renderPixel()
-			if(window.pixelmap.p5.logs) console.log("Rendered pixel at x: " + pos.x + (pixel.x*pixelsize) + ", y: " + pos.y + (pixel.y*pixelsize));
-			//console.log(sketch);
-			sketch.noStroke();
-			sketch.fill(pixel.r, pixel.g, pixel.b, pixel.a);
-			sketch.rect(pos.x + (pixel.x*pixelsize), pos.y + (pixel.y*pixelsize), pixelsize, pixelsize);
-		};
 		for(let pixel of pm.pixels) {
-			renderPixel(pixel, pm.pixelsize, pos, sketch);
+			this.renderPixel(pixel, pm.pixelsize, pos, sketch); // 'this' keyword refers to the object this function is being ran on (pixelmap.p5 or pmp5, in this case)
 		}
 		if(window.pixelmap.p5.logs) console.log("Finished render of \"" + ((typeof pm.name === 'undefined') ? ("Unnamed Pixelmap") : (pm.name)) + "\" at x: " + pos.x + ", y: " + pos.y);
 	},
