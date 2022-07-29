@@ -25,9 +25,9 @@ Cuttlefish is a p5.js renderer.
 How to use cuttlefish.js:
 
 ### Step #1: Turn on 'Instance Mode'
-Unfortunatly you need instance mode for the project to run so Cuttlefish can detect which instance to write to.
+Unfortunatly you need instance mode for the project to run so Cuttlefish can detect which instance to use.
 
-(Without an instance Cuttlefish would use the instance as `undefined` which could lead to many countless errors.
+(Without an instance Cuttlefish would use the instance as `undefined` which could lead to many countless errors.)
 
 ### Step #2 Import the script
 Add this to your HTML `<head>` element:
