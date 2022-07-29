@@ -1,10 +1,19 @@
 # Yup you got the right folder!
 This is where the source code for all our renderers is stored.
 
-Yep, its just as simple as
+Yep, its just not that simple to add:
 
 ```
-<script src="https://raw.githubusercontent.com/Buggem/.pixelmap/main/renderers/cuttlefish.js"></script>
+<script>
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) {
+	    eval(this.responseText);
+	  }
+	};
+	xhttp.open("GET", "https://raw.githubusercontent.com/Buggem/.pixelmap/main/renderers/cuttlefish.js", true);
+	xhttp.send();
+</script>
 ```
 
 To put the renderer as a function.
@@ -24,8 +33,19 @@ Unfortunatly you need instance mode for the project to run so Cuttlefish can det
 Add this to your HTML `<head>` element:
 
 ```
-<script src="https://raw.githubusercontent.com/Buggem/.pixelmap/main/renderers/cuttlefish.js"></script>
+<script>
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) {
+	    eval(this.responseText);
+	  }
+	};
+	xhttp.open("GET", "https://raw.githubusercontent.com/Buggem/.pixelmap/main/renderers/cuttlefish.js", true);
+	xhttp.send();
+</script>
 ```
+
+and make sure to constantly check for `window.hasOwnProperty("pixelmap")` and if that is true, `window.pixelmap.hasOwnProperty("p5")`
 
 ### Step #3 Render your pixelmap
 
@@ -44,7 +64,7 @@ const s = ( sketch ) => {
 
   sketch.draw = () => {
     sketch.background(100);
-		window.pixelmap.p5.render(readtest, {x: 0, y: 0}, sketch);
+    if(window.hasOwnProperty("pixelmap")) { if(window.pixelmap.hasOwnProperty("p5")) { window.pixelmap.p5.render(readtest, {x: 0, y: 0}, sketch); } }
 		
   };
 };
