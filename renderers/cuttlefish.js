@@ -73,7 +73,7 @@ var pmp5 = {
 				}
 			}
 			if(typeof pixelsize !== 'number') {
-				throw new this.PixelMapP5Exception("Pixel size is NaN.");
+				throw new this.PixelMapP5Exception("Pixel size is NaN. Pixel size is " + pixelsize + ". I you see any difference between these sentences report this bug immediantly.");
 			}
 			if((typeof sketch !== 'string') && (typeof pos !== 'string') && (typeof pm !== 'string') && (typeof pixelsize !== 'number')) {
 				throw new this.PixelMapP5Exception("Warning... all arguments incorrect");
