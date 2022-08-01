@@ -36,7 +36,7 @@ var pmp5 = {
 					throw new this.PixelMapP5Exception("Unable to parse JSON. Are you messing with pixelmap?");
 				}
 			}
-			if((typeof sketch !== 'string') && (typeof pos !== 'string') && (typeof pm !== 'string')) {
+			if((typeof sketch !== 'object') && (typeof pos !== 'object') && (typeof pm !== 'object')) {
 				throw new this.PixelMapP5Exception("Warning... all arguments incorrect");
 			}
 		}
@@ -75,8 +75,8 @@ var pmp5 = {
 			if(typeof pixelsize !== 'number') {
 				throw new this.PixelMapP5Exception("Pixel size is NaN. Pixel size is " + pixelsize + ". I you see any difference between these sentences report this bug immediantly.");
 			}
-			if((typeof sketch !== 'string') && (typeof pos !== 'string') && (typeof pm !== 'string') && (typeof pixelsize !== 'number')) {
-				throw new this.PixelMapP5Exception("Warning... all arguments incorrect");
+			if((typeof sketch !== 'object') && (typeof pos !== 'object') && (typeof pm !== 'object') && (typeof pixelsize !== 'number')) {
+				throw new this.PixelMapP5Exception("Warning... all arguments incorrect (from renderPixel())");
 			}
 		}
 		if(window.pixelmap.p5.logs) console.log("Rendered pixel at x: " + pos.x + (pixel.x*pixelsize) + ", y: " + pos.y + (pixel.y*pixelsize));
