@@ -4,31 +4,98 @@ var version = 0.1; // Version represented as decimal int
 console.log("Pixelmapper (aka NIPPER) for P5.js (codename Cuttlefish) v" + version.toString() + " renderer OFFICIAL\n\u00A9 The Pixelmap Authors " + currentDate.getFullYear()); // Making my life easier so I never have to update the year.
 var pxname = "Official Pixelmapper (aka NIPPER) for P5.js (codename Cuttlefish) v" + version.toString() + " by The Pixelmap Authors";
 var pmp5 = {
+	"PixelMapP5Exception": function(message = "") {
+		this.name = "PixelMapP5Exception";
+		this.message = message;
+	},
 	"logs": false, // Do logs? boolean
 	"render": function(pm, pos, sketch) { // Main render function
+		if( ( !(typeof pm === 'object') || pm === null ) || ( !(typeof pos === 'object') || pos === null ) || ( !(typeof sketch === 'object') || sketch === null )) { // Null is an exception for this, for whatever reason it returns 'object'
+			//console.warn("WARNING: Not ideal data type passed.");
+			if(typeof pm === 'string') {
+				try {
+					var newPm = JSON.parse(pm);
+					pm = newPm;
+				} catch {
+					throw new this.PixelMapP5Exception("Unable to parse JSON. Are you messing with pixelmap?");
+				}
+			}
+			if(typeof pos === 'string') {
+				try {
+					var newPos = JSON.parse(pos);
+					pos = newPos;
+				} catch {
+					throw new this.PixelMapP5Exception("Unable to parse JSON. Are you messing with pixelmap?");
+				}
+			}
+			if(typeof sketch === 'string') {
+				try {
+					var newSketch = JSON.parse(sketch);
+					sketch = newSketch;
+				} catch {
+					throw new this.PixelMapP5Exception("Unable to parse JSON. Are you messing with pixelmap?");
+				}
+			}
+			if((typeof sketch !== 'string') && (typeof pos !== 'string') && (typeof pm !== 'string')) {
+				throw new this.PixelMapP5Exception("Warning... all arguments incorrect");
+			}
+		}
 		for(let pixel of pm.pixels) {
 			this.renderPixel(pixel, pm.pixelsize, pos, sketch); // 'this' keyword refers to the object this function is being ran on (pixelmap.p5 or pmp5, in this case)
 		}
 		if(window.pixelmap.p5.logs) console.log("Finished render of \"" + ((typeof pm.name === 'undefined') ? ("Unnamed Pixelmap") : (pm.name)) + "\" at x: " + pos.x + ", y: " + pos.y);
 	},
 	"renderPixel": function(pixel, pixelsize, pos, sketch) { // Renders a single pixel
-			if(window.pixelmap.p5.logs) console.log("Rendered pixel at x: " + pos.x + (pixel.x*pixelsize) + ", y: " + pos.y + (pixel.y*pixelsize));
-			//console.log(sketch);
-			sketch.noStroke();
-			sketch.fill(pixel.r, pixel.g, pixel.b, pixel.a);
-			sketch.rect(pos.x + (pixel.x*pixelsize), pos.y + (pixel.y*pixelsize), pixelsize, pixelsize);
+		if( ( !(typeof pixel === 'object') || pixel === null ) || ( !(typeof pos === 'object') || pos === null ) || ( !(typeof sketch === 'object') || sketch === null ) || ( !(typeof pixelsize === 'number') || !isNaN(pixelsize) )) { // Null is an exception for this, for whatever reason it returns 'object'
+			//console.warn("WARNING: Not ideal data type passed.");
+			if(typeof pixel === 'string') {
+				try {
+					var newPixel = JSON.parse(pixel);
+					pixel = newPixel;
+				} catch {
+					throw new this.PixelMapP5Exception("Unable to parse JSON. Are you messing with pixelmap?");
+				}
+			}
+			if(typeof pos === 'string') {
+				try {
+					var newPos = JSON.parse(pos);
+					pos = newPos;
+				} catch {
+					throw new this.PixelMapP5Exception("Unable to parse JSON. Are you messing with pixelmap?");
+				}
+			}
+			if(typeof sketch === 'string') {
+				try {
+					var newSketch = JSON.parse(sketch);
+					sketch = newSketch;
+				} catch {
+					throw new this.PixelMapP5Exception("Unable to parse JSON. Are you messing with pixelmap?");
+				}
+			}
+			if(typeof pixelsize === 'number') {
+				throw new this.PixelMapP5Exception("Pixel size is NaN.");
+			}
+			if((typeof sketch !== 'string') && (typeof pos !== 'string') && (typeof pm !== 'string') && (typeof pixelsize !== 'number')) {
+				throw new this.PixelMapP5Exception("Warning... all arguments incorrect");
+			}
+		}
+		if(window.pixelmap.p5.logs) console.log("Rendered pixel at x: " + pos.x + (pixel.x*pixelsize) + ", y: " + pos.y + (pixel.y*pixelsize));
+		//console.log(sketch);
+		sketch.noStroke();
+		sketch.fill(pixel.r, pixel.g, pixel.b, pixel.a);
+		sketch.rect(pos.x + (pixel.x*pixelsize), pos.y + (pixel.y*pixelsize), pixelsize, pixelsize);
 	},
 	"loadPixelmap": function(url, _callback) { // Newly added load feature
-		  var xhttp = new XMLHttpRequest();
-		  xhttp.onreadystatechange = function() {
-		    if (this.readyState == 4 && this.status == 200) {
-		      var pm = JSON.parse(this.responseText);
-		      _callback(pm);
-		      window.savePixelmap(pm);
-		    }
-		  };
-		  xhttp.open("GET", url, true);
-		  xhttp.send();
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var pm = JSON.parse(this.responseText);
+				_callback(pm);
+				window.savePixelmap(pm);
+			}
+		};
+		xhttp.open("GET", url, true);
+		xhttp.send();
 	},
 	"genPixelmap": function(_name ,_pxsize, image, _callback) { // Even newer generator from a p5.Image!
 		var pm = { 
@@ -47,6 +114,7 @@ var pmp5 = {
 		_callback(pm);
 	}
 };
+pmp5.PixelMapP5Exception.prototype = Error.prototype;
 window.savePixelmap = function(pm) { // Saves to LocalStorage
 	var pmID = Math.floor(Math.random() * 1000).toString();
 	if(window.localStorage.hasOwnProperty(pmID)) {
