@@ -72,7 +72,7 @@ var pmp5 = {
 					throw new this.PixelMapP5Exception("Unable to parse JSON. Are you messing with pixelmap?");
 				}
 			}
-			if(typeof pixelsize === 'number') {
+			if(typeof pixelsize !== 'number') {
 				throw new this.PixelMapP5Exception("Pixel size is NaN.");
 			}
 			if((typeof sketch !== 'string') && (typeof pos !== 'string') && (typeof pm !== 'string') && (typeof pixelsize !== 'number')) {
