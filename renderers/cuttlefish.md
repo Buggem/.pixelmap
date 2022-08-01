@@ -15,3 +15,13 @@ window.pixelmap.p5.loadPixelmap("https://raw.githubusercontent.com/Buggem/.pixel
 	renderReady = true;
 });
 ```
+
+### Using BRF
+BRF (standing for Basic Render Functions) includes `render()` and `renderPixel()`.
+```
+window.pixelmap.p5.render(
+	... /*Type: JSON/String - the first param is the JSON pixelmap object parsed or stringified.*/,
+	... /*Type: JSON/String - More JSON in here. set JSON objects x value to the desired x position and the y value to the desired y position.*/,
+	... /*Type: p5.js Applet (JSON object) - Typically "window" without instance mode*/
+	
+```
