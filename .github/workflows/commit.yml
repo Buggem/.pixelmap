@@ -23,7 +23,7 @@ jobs:
         run: |
           chmod +x .github/webhook.sh
       - name: Discord webhook
-        if: ${{ github.event_name == 'push' && github.repository_owner == 'Buggem' }}
+        if: ${{ github.event_name == 'push' && github.repository_owner == 'Nyanport' }}
         env:
           DISCORDWEBHOOK: ${{ secrets.DISCORDWEBHOOK }}
         run: |
