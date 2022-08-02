@@ -1,3 +1,8 @@
+---
+name: New issue
+about: Create new issue
+title: "New issue"
+---
 # What is the bug?
 <!-- Describe your bug here -->
 
