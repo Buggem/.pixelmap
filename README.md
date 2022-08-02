@@ -25,7 +25,7 @@ There are way too many Pixelmaps.
 
 I can't think why I even called it that.
 
-Oh well, I just we'll just have to live with it.
+Oh well, I think we'll just have to live with it.
 
 [@dev01111](https://github.com/dev01111) - the only person to commit so far
 
