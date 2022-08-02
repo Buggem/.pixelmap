@@ -5,7 +5,7 @@ set -e
 git_hash=$(git rev-parse --short "$GITHUB_SHA")
 git_branch=${GITHUB_REF#refs/heads/}
 
-echo "Commit ${hash} on ${git_branch}"
+echo "Commit ${git_hash} on ${git_branch}"
 
 curl -H 'Content-Type: application/json' -X POST "$DISCORDWEBHOOK" -d@- << EOF
 {
