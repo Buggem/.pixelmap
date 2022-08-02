@@ -23,7 +23,7 @@ and don't confuse it with this search result either: https://github.com/mattelio
 
 There are way too many Pixelmaps.
 
-I can't think why I even called it that.
+I can't think why @Buggem even called it that.
 
 Oh well, I think we'll just have to live with it.
 
