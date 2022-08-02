@@ -39,3 +39,5 @@ This disclaimer may make you suspicious but it's really just to avoid traffic fr
 .PIXELMAP files are images readable in JSON form. Simillar to SVG, .PIXELMAPs are editable human readable JSON files. 
 <br>
 Here is the source for our render APIs and the expected .PIXELMAP syntax.
+<!-- Wouldn't it be nice to add more info -->
+The main example for Pixelmap is https://openprocessing.org/sketch/1616444. See more APIs and documentation <a href="https://github.com/Nyanport/.pixelmap/blob/main/renderers/README.md">here</a>.
