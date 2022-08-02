@@ -11,12 +11,12 @@ jobs:
         uses: actions/checkout@master
         
       - name: "Is repo"
-        if: ${{ github.repository_owner == 'Buggem' }}
+        if: ${{ github.repository_owner == 'Nyanport' }}
         run: |
           echo "Commit detected on main repo!"
       
       - name: "Not repo"
-        if: ${{ github.repository_owner != 'Buggem' }}
+        if: ${{ github.repository_owner != 'Nyanport' }}
         run: |
           echo "Commit detected on other repo!"
       - name: Ready webhook file
