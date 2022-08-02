@@ -2,6 +2,7 @@
 name: New issue
 about: Create new issue
 title: "New issue"
+labels: unattended
 ---
 # What is the bug?
 <!-- Describe your bug here -->
