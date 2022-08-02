@@ -1,7 +1,7 @@
 # Yup you got the right folder!
 This is where the source code for all our renderers is stored.
 
-Yep, its just not that simple to add:
+Add this to your code as the URL will have the header 'Content-Type':
 
 ```
 <script>
