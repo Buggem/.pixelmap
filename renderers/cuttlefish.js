@@ -114,7 +114,7 @@ var pmp5 = {
 		_callback(pm);
 	}
 };
-pmp5.PixelMapP5Exception.prototype = Error.prototype;
+pmp5.PixelMapP5Exception.prototype = Error.prototype; // Make PixelMapP5Exception of type Error (make it a throwable error)
 window.savePixelmap = function(pm) { // Saves to LocalStorage
 	var pmID = Math.floor(Math.random() * 1000).toString();
 	if(window.localStorage.hasOwnProperty(pmID)) {
