@@ -26,5 +26,6 @@ jobs:
         if: ${{ github.event_name == 'push' && github.repository_owner == 'Nyanport' }}
         env:
           DISCORDWEBHOOK: ${{ secrets.DISCORDWEBHOOK }}
+          GITNAME: ${{ github.event.commits[0].message }}
         run: |
           .github/webhook.sh
