@@ -109,7 +109,7 @@ var pmp5 = {
 				if(window.pixelmap.p5.logs) console.log("Transferred pixel at x: " + x + ", y: " + y);
 				
 				pm.pixels.push({ "r": red(c), "g": green(c), "b": blue(c), "a": alpha(c), "x": x, "y": y });
-		  }
+			}
 		}
 		_callback(pm);
 	}
