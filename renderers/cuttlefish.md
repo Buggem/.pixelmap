@@ -36,12 +36,20 @@ window.pixelmap.p5.renderPixel(
 ```
 ## Objects
 ### `Pixel`
-Syntax for a `Pixel` is half-`Pixel`-half-`Geometry`
+Syntax for a `Pixel` is half-`Pixel`-half-[**`Geometry`**](https://github.com/Nyanport/.pixelmap/blob/main/renderers/cuttlefish.md#geometry)
 We also have color syntax, such as:
+
+
 `r` for Red (0 to 255)
+
+
 `g` for Green (0 to 255)
+
+
 `b` for Blue (0 to 255)
+
 and
+
 `a` for Alpha (also 0 to 255)
 
 It is of the type `object` and this is the syntax for it:
@@ -50,7 +58,7 @@ var pixel = {"r": 0, "g": 0, "b": 0, "a": 255, "x": 0, "y": 0};
 ```
 ### `Geometry`
 An `Geometry` object, known earlier as a `Position` object, specifies the position or size of a Pixelmap.
-Two usages are the `pos` arguement for [**BRF**](https://github.com/Nyanport/.pixelmap/blob/main/renderers/cuttlefish.md#using-brf) and the `pixelsize` attriubute of the Pixelmap.
+Two usages are the `pos` arguement for [**BRF**](https://github.com/Nyanport/.pixelmap/blob/main/renderers/cuttlefish.md#using-brf) and the `pixelsize` attriubute of the Pixelmap. It is also used in the [**`Pixel`**](https://github.com/Nyanport/.pixelmap/blob/main/renderers/cuttlefish.md#pixel) object.
 It has an `x` attribute for positioning and, as we're using Cartesian coordinates, a `y` as well. These start, as I said earlier, in the top left.
 Usage:
 ```
