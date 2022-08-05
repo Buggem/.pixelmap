@@ -29,7 +29,7 @@ window.pixelmap.p5.render(
 ```
 window.pixelmap.p5.renderPixel(
 	... /*Type: JSON object/String - The singular JSON object of a pixel. See pixel formatting docs for expected layout for a Pixel object*/,
-	... /*Type: Strictly integer - The pixel size. This feature is planned to be replaced later 2022.*/,
+	... /*Type: JSON object/String - The pixel size. Used to be 'Strictly integer' but moved to Geometry object as of August 6, 8:25 am 2022 (Sydney, Australia time)*/,
 	... /*Type: JSON object/String - The position of the Pixelmap. It is a Position object.*/,
 	... /*Type: p5.js Applet (JSON object) - Typically "window" without instance mode*/
 );
