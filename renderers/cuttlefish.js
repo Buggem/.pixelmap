@@ -36,7 +36,7 @@ var pmp5 = {
 					throw new this.PixelMapP5Exception("Unable to parse JSON. Are you messing with pixelmap?");
 				}
 			}
-			if((typeof sketch !== 'object') && (typeof pos !== 'object') && (typeof pm !== 'object')) {
+			if( ( !(typeof pm === 'object') || pm === null ) && ( !(typeof pos === 'object') || pos === null ) && ( !(typeof sketch === 'object') || sketch === null )) {
 				throw new this.PixelMapP5Exception("Warning... all arguments incorrect");
 			}
 		}
@@ -46,7 +46,7 @@ var pmp5 = {
 		if(window.pixelmap.p5.logs) console.log("Finished render of \"" + ((typeof pm.name === 'undefined') ? ("Unnamed Pixelmap") : (pm.name)) + "\" at x: " + pos.x + ", y: " + pos.y);
 	},
 	"renderPixel": function(pixel, pixelsize, pos, sketch) { // Renders a single pixel
-		if( ( !(typeof pixel === 'object') || pixel === null ) || ( !(typeof pos === 'object') || pos === null ) || ( !(typeof sketch === 'object') || sketch === null ) || ( !(typeof pixelsize === 'number') || !isNaN(pixelsize) )) { // Null is an exception for this, for whatever reason it returns 'object'
+		if( ( !(typeof pixel === 'object') || pixel === null ) || ( !(typeof pos === 'object') || pos === null ) || ( !(typeof sketch === 'object') || sketch === null ) || ( !(typeof pixelsize === 'object') || pixelsize === null )) { // Null is an exception for this, for whatever reason it returns 'object'
 			//console.warn("WARNING: Not ideal data type passed.");
 			if(typeof pixel === 'string') {
 				try {
@@ -72,18 +72,23 @@ var pmp5 = {
 					throw new this.PixelMapP5Exception("Unable to parse JSON. Are you messing with pixelmap?");
 				}
 			}
-			if((typeof pixelsize !== 'number') || isNaN(pixelsize)) {
-				throw new this.PixelMapP5Exception("Pixel size is NaN. Pixel size is " + pixelsize + ". I you see any difference between these sentences report this bug immediantly.");
+			if((typeof pixelsize === 'string')) {
+				try {
+					var newPs = JSON.parse(pixelsize);
+					pixelsize = newPs;
+				} catch {
+					throw new this.PixelMapP5Exception("Unable to parse JSON. Are you messing with pixelmap?");
+				}
 			}
-			if((typeof sketch !== 'object') && (typeof pos !== 'object') && (typeof pm !== 'object') && ((typeof pixelsize !== 'number') || isNaN(pixelsize))) {
+			if( ( !(typeof pixel === 'object') || pixel === null ) && ( !(typeof pos === 'object') || pos === null ) && ( !(typeof sketch === 'object') || sketch === null ) && ( !(typeof pixelsize === 'object') || pixelsize === null )) {
 				throw new this.PixelMapP5Exception("Warning... all arguments incorrect (from renderPixel())");
 			}
 		}
-		if(window.pixelmap.p5.logs) console.log("Rendered pixel at x: " + pos.x + (pixel.x*pixelsize) + ", y: " + pos.y + (pixel.y*pixelsize));
+		if(window.pixelmap.p5.logs) console.log("Rendered pixel at x: " + pos.x + (pixel.x*pixelsize.x) + ", y: " + pos.y + (pixel.y*pixelsize.y));
 		//console.log(sketch);
 		sketch.noStroke();
 		sketch.fill(pixel.r, pixel.g, pixel.b, pixel.a);
-		sketch.rect(pos.x + (pixel.x*pixelsize), pos.y + (pixel.y*pixelsize), pixelsize, pixelsize);
+		sketch.rect(pos.x + (pixel.x*pixelsize.x), pos.y + (pixel.y*pixelsize.y), pixelsize.x, pixelsize.y);
 	},
 	"loadPixelmap": function(url, _callback) { // Newly added load feature
 		var xhttp = new XMLHttpRequest();
