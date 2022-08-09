@@ -13,7 +13,7 @@ var wrenchL = {
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				try {var pm = JSON.parse(this.responseText);} catch {throw new this.PixelToolsException("Unable to parse URL response.");}
-				if(typeof pm == 'object') { _callback(pm); }
+				if(typeof pm == 'object' && typeof _callback == 'function') { _callback(pm); }
 				window.savePixelmap(pm);
 			}
 		};
