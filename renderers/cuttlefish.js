@@ -1,6 +1,6 @@
 //window.pixelmap = { "name": "COOLERRENDER" }; // Unofficial render test
 const currentDate = new Date(); // So I never have to change the date
-var version = 0.1; // Version represented as decimal int
+var version = 0.1; // Version represented as decimal
 console.log("Pixelmapper (aka NIPPER) for P5.js (codename Cuttlefish) v" + version.toString() + " renderer OFFICIAL\n\u00A9 The Pixelmap Authors " + currentDate.getFullYear()); // Making my life easier so I never have to update the year.
 var pxname = "Official Pixelmapper (aka NIPPER) for P5.js (codename Cuttlefish) v" + version.toString() + " by The Pixelmap Authors";
 var pmp5 = {
@@ -94,8 +94,14 @@ var pmp5 = {
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-				var pm = JSON.parse(this.responseText);
-				_callback(pm);
+				try {
+					var pm = JSON.parse(this.responseText);
+				} catch {
+					throw new this.PixelToolsException("Unable to parse URL response.");
+				}
+				if(typeof pm == 'object' && typeof _callback == 'function') {
+					_callback(pm);
+				}
 				window.savePixelmap(pm);
 			}
 		};
@@ -148,4 +154,3 @@ if (typeof window.pixelmap === 'undefined') {
 	// This case warn the user
 	unofficialFound(); // We found an unofficial 'reserved variable overwrite'
 }
-//window.pixelmap.p5 = pmp5;
