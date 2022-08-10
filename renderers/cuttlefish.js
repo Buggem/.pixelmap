@@ -9,6 +9,11 @@ var pmp5 = {
 		this.message = message;
 	},
 	"logs": false, // Do logs? boolean
+	"changeErrorMode": function(bool) {
+		if(typeof bool == 'boolean') {
+			this.PixelMapP5Exception.prototype = ((bool) ? (Error.prototype) : (undefined));
+		}
+	},
 	"render": function(pm, pos, sketch) { // Main render function
 		if( ( !(typeof pm === 'object') || pm === null ) || ( !(typeof pos === 'object') || pos === null ) || ( !(typeof sketch === 'object') || sketch === null )) { // Null is an exception for this, for whatever reason it returns 'object'
 			//console.warn("WARNING: Not ideal data type passed.");
@@ -94,15 +99,16 @@ var pmp5 = {
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
+				var pm = ""; // Won't be of type 'object' if fails and PixelMapP5Exception fails
 				try {
-					var pm = JSON.parse(this.responseText);
+					pm = JSON.parse(this.responseText);
 				} catch {
-					throw new this.PixelToolsException("Unable to parse URL response.");
+					throw new this.PixelMapP5Exception("Unable to parse URL response.");
 				}
 				if(typeof pm == 'object' && typeof _callback == 'function') {
 					_callback(pm);
+					window.savePixelmap(pm);
 				}
-				window.savePixelmap(pm);
 			}
 		};
 		xhttp.open("GET", url, true);
