@@ -9,11 +9,6 @@ var pmp5 = {
 		this.message = message;
 	},
 	"logs": false, // Do logs? boolean
-	"changeErrorMode": function(bool) {
-		if(typeof bool == 'boolean') {
-			this.PixelMapP5Exception.prototype = ((bool) ? (Error.prototype) : (undefined));
-		}
-	},
 	"render": function(pm, pos, sketch) { // Main render function
 		if( ( !(typeof pm === 'object') || pm === null ) || ( !(typeof pos === 'object') || pos === null ) || ( !(typeof sketch === 'object') || sketch === null )) { // Null is an exception for this, for whatever reason it returns 'object'
 			//console.warn("WARNING: Not ideal data type passed.");
