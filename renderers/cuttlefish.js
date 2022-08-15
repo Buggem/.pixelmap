@@ -9,6 +9,7 @@ var pmp5 = {
 		this.message = message;
 	},
 	"logs": false, // Do logs? boolean
+	// changeErrorMode() is a instantly deprecated as soon as added feature. One day it will come back but for now no changeErrorMode().
 	"render": function(pm, pos, sketch) { // Main render function
 		if( ( !(typeof pm === 'object') || pm === null ) || ( !(typeof pos === 'object') || pos === null ) || ( !(typeof sketch === 'object') || sketch === null )) { // Null is an exception for this, for whatever reason it returns 'object'
 			//console.warn("WARNING: Not ideal data type passed.");
