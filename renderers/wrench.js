@@ -21,7 +21,7 @@ var wrenchL = {
 		xhttp.send();
 	}
 };
-pmp5.PixelToolsException.prototype = Error.prototype; // Make PixelMapP5Exception of type Error (make it a throwable error)
+wrenchL.PixelToolsException.prototype = Error.prototype; // Make PixelMapP5Exception of type Error (make it a throwable error)
 window.savePixelmap = function(pm) { // Saves to LocalStorage
 	var pmID = Math.floor(Math.random() * 1000).toString();
 	if(window.localStorage.hasOwnProperty(pmID)) {
@@ -39,7 +39,6 @@ function unofficialFound() { // Don't overwrite OUR variable
 	}
 	console.warn("WARNING: Unofficial renderer found using same variable name as official.\nIf you are the developer of this renderer please use a different variable name.\nThis render will now be sent to localstorage as render #" + renderID);
 	window.localStorage.setItem(renderID, JSON.stringify(window.pixelmap)); // Bye bye other renderer, go into localstorage
-	window.pixelmap.p5 = wrenchL; // DON'T REMOVE THIS LINE | DEFINES PIXELMAP.WRENCH
 }
 if (typeof window.pixelmap === 'undefined') {
 	// Remember to use alongside pixelmap
@@ -47,6 +46,6 @@ if (typeof window.pixelmap === 'undefined') {
 } else if(window.pixelmap.wrench.name !== pxname) {
 	// This case warn the user
 	unofficialFound(); // We found an unofficial 'reserved variable overwrite' or a undefined value!
-} else {
-  window.pixelmap.p5 = wrenchL;
 }
+
+window.pixelmap.wrench = wrenchL;
